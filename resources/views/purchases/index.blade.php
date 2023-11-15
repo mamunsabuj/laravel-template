@@ -1,0 +1,39 @@
+@extends('layout')
+
+@section('content')
+
+    <div>
+    <h1>Purchases</h1>
+    <a href="{{ route('purchase.create') }}" class="btn btn-primary">Create</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>sl</th>
+                <th>Product</th>
+                <th>Batch</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Note</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        @forelse($purchases as $item)
+        <tr>
+            <td>{{ $loop->iteration }}</td>
+            <td>{{ $item->product->name }}</td>
+            <td>{{ $item->batch }}</td>
+            <td>{{ $item->price }}</td>
+            <td>{{ $item->quantity }}</td>
+            <td>{{ $item->note }}</td>
+        </tr>
+        @empty
+        <tr>
+            <td colspan="6">No item found</td>
+        </tr>
+        @endforelse
+        </tbody>
+    </table>
+
+    </div>
+@endsection
